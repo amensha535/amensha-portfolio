@@ -1,0 +1,475 @@
+/* =========================================
+   1. VARIABLES & THEME SETUP
+   ========================================= */
+
+:root {
+    /* DEFAULT THEME: DARK MODE (Pure Black) */
+    --bg-color: #000000;
+    --nav-bg: rgba(0, 0, 0, 0.9);
+    --text-primary: #ccd6f6;        /* Light Grey for Headings */
+    --text-secondary: #8892b0;      /* Darker Grey for Paragraphs */
+    --card-bg: #111111;             /* Slightly lighter black for cards */
+    --accent: #64ffda;              /* Neon Green */
+    --shadow: 0 4px 6px rgba(255,255,255,0.05);
+    --skill-hover-shadow: 0 8px 15px rgba(100, 255, 218, 0.15); /* Green Glow */
+}
+
+/* LIGHT MODE OVERRIDE (Activated via JS) */
+body.light-mode {
+    --bg-color: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.95);
+    --text-primary: #333333;
+    --text-secondary: #555555;
+    --card-bg: #f4f4f4;
+    --accent: #008080;              /* Teal Green */
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --skill-hover-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Modern Font */
+    transition: all 0.3s ease;        /* Smooth transitions for everything */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================================
+   3. NAVBAR STYLING
+   ========================================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Logo Left, Content Right */
+    align-items: center;
+    padding: 20px 5%;
+    background: var(--nav-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);    /* Blur effect behind navbar */
+    box-shadow: var(--shadow);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.dot {
+    color: var(--text-primary);
+}
+
+/* Container for Links + Theme Icon + Mobile Menu */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* Theme Toggle Icon (Sun/Moon) */
+#theme-toggle {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    padding: 5px;
+}
+
+#theme-toggle:hover {
+    color: var(--accent);
+    transform: rotate(15deg);
+}
+
+/* Mobile Menu Button (Hamburger) */
+.menu-btn {
+    display: none;          /* Hidden on Laptop */
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    z-index: 2000;          /* High z-index to stay above menu */
+    position: relative;
+}
+
+/* =========================================
+   4. SECTION & CONTAINER DEFAULTS
+   ========================================= */
+
+.section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 200px;
+    height: 1px;
+    background: var(--text-secondary);
+    opacity: 0.3;
+    margin-left: 20px;
+}
+
+/* =========================================
+   5. HERO SECTION
+   ========================================= */
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.greeting {
+    color: var(--accent);
+    font-family: monospace;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.hero .subtitle {
+    font-size: 3rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.description {
+    max-width: 500px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    font-size: 1rem;
+}
+
+.highlight {
+    color: var(--accent);
+}
+
+.btn {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 12px 25px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: rgba(100, 255, 218, 0.1);
+}
+
+/* --- HERO BUTTONS --- */
+.hero-buttons {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+    margin-top: 30px;
+}
+
+/* Secondary Button Style (Optional distinct look) */
+.btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+.btn-outline:hover {
+    background: rgba(100, 255, 218, 0.1);
+}
+
+/* =========================================
+   6. ABOUT SECTION
+   ========================================= */
+
+.about-text p {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+}
+
+.about-text strong {
+    color: var(--accent);
+}
+
+/* =========================================
+   7. SKILLS SECTION (NEW LAYOUT)
+   ========================================= */
+
+.skills-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.skill-category {
+    flex: 1;
+    min-width: 250px;
+}
+
+.skill-category h3 {
+    color: var(--accent);
+    margin-bottom: 25px;
+    font-size: 1.3rem;
+    font-family: monospace;
+    border-bottom: 1px solid rgba(128,128,128,0.2);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Individual Skill Item with Icon */
+.skill-item {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow);
+    border-left: 3px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: default;
+}
+
+.skill-item i {
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+/* Hover Effect for Skills */
+.skill-item:hover {
+    transform: translateY(-5px);
+    background: var(--nav-bg);
+    box-shadow: var(--skill-hover-shadow);
+    border-left: 3px solid var(--text-primary);
+}
+
+/* =========================================
+   8. PROJECTS SECTION
+   ========================================= */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-card:hover {
+    transform: translateY(-7px);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.open-folder {
+    color: var(--accent);
+}
+
+.card-header a:hover {
+    color: var(--accent);
+}
+
+.project-card h3 {
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.project-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tech-stack span {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* =========================================
+   9. CONTACT SECTION
+   ========================================= */
+
+.contact-section {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.big-heading {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.centered {
+    margin: 0 auto 50px auto;
+}
+
+.social-links {
+    margin-top: 50px;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    margin: 0 15px;
+    color: var(--text-secondary);
+}
+
+.social-links a:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+/* =========================================
+   10. FOOTER
+   ========================================= */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-secondary);
+    font-family: monospace;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   11. RESPONSIVE DESIGN (MOBILE)
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* Show Hamburger Menu */
+    .menu-btn {
+        display: block;
+    }
+    
+    /* Typography Adjustments */
+    .hero h1 { font-size: 2.5rem; }
+    .hero .subtitle { font-size: 2rem; }
+    .big-heading { font-size: 2.2rem; }
+    .section { padding: 60px 5%; }
+
+    /* Mobile Menu Styling */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;       /* Hide off-screen */
+        width: 75%;
+        height: 100vh;
+        background: var(--nav-bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        z-index: 1500;      /* Below menu-btn but above content */
+        transition: 0.3s ease-in-out;
+    }
+
+    .nav-links.active {
+        right: 0;           /* Slide in */
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+    }
+
+    /* Stack Skills vertically on small mobile */
+    .skills-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .hero-buttons {
+        justify-content: center;
+      }
+}
